@@ -58,7 +58,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <h2 className="font-serif text-2xl tracking-wide text-amber-400">
-              Amritasya
+              Amritashya
               <span className="block text-sm font-sans font-light tracking-[0.35em] text-stone-400">
                 AYURVEDA
               </span>

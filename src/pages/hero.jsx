@@ -121,16 +121,15 @@ function Hero() {
 
           {/* Heading */}
           <h1 className="ayur-rise ayur-d2 ayur-display mt-6 text-4xl md:text-5xl lg:text-[3.6rem] font-medium text-[#1E3A2B] leading-[1.08]">
-            Ancient wisdom,
+          Your Journey to
           </h1>
           <h1 className="ayur-rise ayur-d3 ayur-display italic text-4xl md:text-5xl lg:text-[3.6rem] font-medium text-green-700 leading-[1.08]">
-            bottled for today.
+     Natural Healing Starts Here
           </h1>
 
           {/* Description */}
           <p className="ayur-rise ayur-d4 mt-6 text-[#3F4A3F]/80 text-lg leading-8 max-w-xl">
-            Handpicked herbs, time-tested formulations, and honest ingredients —
-            crafted the Ayurvedic way to help your family feel well, naturally.
+       Discover authentic Ayurvedic formulations crafted to support digestive wellness and provide natural relief.
           </p>
 
           {/* Buttons */}

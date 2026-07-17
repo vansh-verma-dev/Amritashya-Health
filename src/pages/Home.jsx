@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import FAQ from "./Faq";
 import Footer from "./Footer";
 import Hero from "./hero";
+import Products from "./products";
 import WhyChooseUs from "./whychooes";
  
 
@@ -12,6 +13,7 @@ function Home(){
        <Navbar/>
        <Hero/>
        <Headline/>
+       <Products/>
        <WhyChooseUs/>
        <FAQ/>
        <Footer/>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import myLogo from "../assets/mylogo.jpg";
 import { FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
@@ -26,15 +26,13 @@ function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-3 cursor-pointer">
 
-          <img
-            src="./assets/mylogo.jpg"
-            alt="logo"
+         <img src={myLogo} alt="Amritasya Logo"
             className="w-12 h-12 rounded-full object-cover border-2 border-green-600"
           />
 
           <div>
             <h1 className="text-2xl font-bold text-green-700">
-              Amritasya
+              Amritashya
             </h1>
 
             <p className="text-xs tracking-[4px] text-gray-500">

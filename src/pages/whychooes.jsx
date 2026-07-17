@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
             Why Choose Us
           </span>
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Why Choose <span className="text-teal-600">Amritasya</span>?
+            Why Choose <span className="text-teal-600">Amritashya</span>?
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-slate-500 sm:text-base">
             We combine classical Ayurvedic wisdom with disciplined, modern

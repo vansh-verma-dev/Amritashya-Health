@@ -37,7 +37,7 @@ export default function HeroMarquee() {
           <span
             key={i}
             className="flex shrink-0 items-center gap-2 px-6 text-sm font-medium text-green-700 sm:text-[15px]"
-          >
+          >s
             <FaCheckCircle className="text-green-500" size={13} />
             {text}
           </span>
