@@ -1,3 +1,4 @@
+import Headline from "../Components/headline";
 import Navbar from "../Components/Navbar";
 import FAQ from "./Faq";
 import Footer from "./Footer";
@@ -10,6 +11,7 @@ function Home(){
         <>
        <Navbar/>
        <Hero/>
+       <Headline/>
        <WhyChooseUs/>
        <FAQ/>
        <Footer/>
