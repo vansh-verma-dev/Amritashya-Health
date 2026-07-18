@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import {   NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import myLogo from "../assets/mylogo.jpg";
 import { FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
@@ -12,10 +13,9 @@ function Navbar() {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Products", path: "/products" },
-    { name: "About", path: "/about" },
+    { name: "Products", path: "/" },
+    { name: "About", path: "/AboutPage" },
     { name: "Health Solution", path: "/health-solution" },
-    { name: "FAQs", path: "/faqs" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -24,6 +24,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto h-20 px-5 flex items-center justify-between">
 
         {/* Logo */}
+     <Link to="/">
         <div className="flex items-center gap-3 cursor-pointer">
 
          <img src={myLogo} alt="Amritasya Logo"
@@ -41,6 +42,7 @@ function Navbar() {
           </div>
 
         </div>
+     </Link>
 
         {/* Desktop Menu */}
 

@@ -29,7 +29,7 @@ const faqs = [
 
 function FaqItem({ item, isOpen, onToggle }) {
   return (
-    <div className="border-b border-emerald-800/70">
+    <div className="border-b border-emerald-800/70" id="faq">
       <button
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-6 py-6 text-left"
