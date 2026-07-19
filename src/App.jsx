@@ -4,6 +4,7 @@ import NotFound from "./Components/Notefounf";
 import AboutAmritashya from "./pages/About/about";
 import Contact from "./pages/Contact/contact";
 import ProductView from "./Product/productView";
+import Signin from "./Account/signIn";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Route path="/AboutPage" element={<AboutAmritashya />} />
         <Route path="/Contact" element={<Contact/>}/>
         <Route path="/ProductView" element={<ProductView/>}/>
+        <Route path="/Createaccount" element={<Signin/>}/>
+
         <Route path="*" element={<NotFound />} />
         
       </Routes>

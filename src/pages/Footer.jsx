@@ -8,9 +8,7 @@ import {
 } from "react-icons/fa";
 import { IoMdMailUnread } from "react-icons/io";
 
-// Amritasya Ayurveda — Footer
-// Palette: deep emerald (grounding, herbal) + warm amber (turmeric, warmth)
-// Signature: thin botanical divider (leaf motif) + faint leaf watermark
+ 
 
 const quickLinks = ["Home", "About Us", "Treatments", "Our Doctors", "Blog", "Contact"];
 
@@ -25,7 +23,7 @@ const treatments = [
 export default function Footer() {
   return (
     <footer className="relative bg-emerald-950 text-stone-300 overflow-hidden">
-      {/* Faint leaf watermark, signature element */}
+      
       <svg
         className="pointer-events-none absolute -right-16 -top-10 h-72 w-72 text-emerald-900/40 sm:h-96 sm:w-96"
         viewBox="0 0 200 200"
@@ -44,7 +42,7 @@ export default function Footer() {
         <path d="M100 100C122 112 138 128 145 145" stroke="currentColor" strokeWidth="1" />
       </svg>
 
-      {/* Thin gold botanical divider along the very top edge */}
+     
       <div className="relative flex items-center justify-center border-b border-emerald-800/70 py-3">
         <span className="h-px w-16 bg-amber-500/50 sm:w-24" />
         <svg viewBox="0 0 24 24" className="mx-3 h-4 w-4 text-amber-400" fill="currentColor">
@@ -58,7 +56,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <h2 className="font-serif text-2xl tracking-wide text-amber-400">
-              Amritashya
+              Prajanya
               <span className="block text-sm font-sans font-light tracking-[0.35em] text-stone-400">
                 AYURVEDA
               </span>

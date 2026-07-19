@@ -142,7 +142,7 @@ export default function WhyChooseUs() {
             className="flex items-center gap-2 text-xs tracking-widest uppercase font-bold mb-5"
           >
             <span style={{ backgroundColor: "#E8B86D" }} className="w-5 h-[1.5px]" />
-            Why choose Prana
+            Why choose  Prajanya
           </div>
           <h2
             className="prana-font-display font-medium leading-tight mb-3"

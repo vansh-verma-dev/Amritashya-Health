@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {   NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-import myLogo from "../assets/mylogo.jpg";
+import myLogo from "../assets/PLogo.png";
 import { FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
@@ -33,11 +33,11 @@ function Navbar() {
 
           <div>
             <h1 className="text-2xl font-bold text-green-700">
-              Amritashya
+              Prajanya
             </h1>
 
             <p className="text-xs tracking-[4px] text-gray-500">
-              AYURVEDA
+             Healthcares
             </p>
           </div>
 
@@ -71,9 +71,11 @@ function Navbar() {
 
         <div className="hidden lg:flex items-center gap-3">
 
+        <Link to={"/Createaccount"}>
           <button className="w-11 h-11 rounded-full bg-green-50 hover:bg-green-700 hover:text-white transition flex items-center justify-center text-xl">
             <FaRegUser />
           </button>
+        </Link>
 
           <button className="w-11 h-11 rounded-full bg-green-50 hover:bg-green-700 hover:text-white transition flex items-center justify-center text-xl">
             <FaRegHeart />

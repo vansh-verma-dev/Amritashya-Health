@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
-// Amritasya Ayurveda — FAQ Section
-// Same token system as Footer: emerald-950/900 ground, amber-400 accent, serif display
-
 const faqs = [
   {
     q: "What is Ayurveda and how is it different from modern medicine?",
@@ -70,7 +67,7 @@ export default function FAQ() {
 
   return (
     <section className="relative bg-emerald-950 text-stone-300 overflow-hidden">
-      {/* Faint leaf watermark, echoes footer signature */}
+ 
       <svg
         className="pointer-events-none absolute -left-16 -bottom-16 h-72 w-72 text-emerald-900/40 sm:h-96 sm:w-96"
         viewBox="0 0 200 200"

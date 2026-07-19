@@ -113,7 +113,7 @@ function Hero() {
         {/* Left Content */}
         <div>
 
-          {/* Apothecary-style eyebrow badge */}
+         
           <div className="ayur-rise ayur-d1 inline-flex items-center gap-2 bg-transparent border border-dashed border-[#1E3A2B]/40 text-[#1E3A2B] px-4 py-2 rounded-full text-xs font-semibold tracking-[0.15em] uppercase">
             <ShieldCheck className="w-4 h-4 text-[#C89A3B]" strokeWidth={2.5} />
             Trusted by 50,000+ Families
@@ -175,7 +175,7 @@ function Hero() {
           {/* Soft background wash */}
           <div className="absolute w-[340px] h-[340px] md:w-[460px] md:h-[460px] rounded-full bg-[#DCE6D6] blur-3xl opacity-70"></div>
 
-          {/* Rotating apothecary seal ring — signature element */}
+         
           <svg
             className="ayur-seal absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] z-10"
             viewBox="0 0 400 400"
@@ -186,7 +186,7 @@ function Hero() {
             <circle cx="200" cy="200" r="170" fill="none" stroke="#1E3A2B" strokeOpacity="0.18" strokeWidth="1" strokeDasharray="2 6" />
             <text fill="#1E3A2B" fillOpacity="0.55" fontSize="13" letterSpacing="4" fontFamily="Manrope, sans-serif" fontWeight="700">
               <textPath href="#sealCircle" startOffset="0%">
-                PURE · AMRITASYA · AYURVEDA · PURE · AMRITASYA · AYURVEDA ·
+                PURE · Prajanya · AYURVEDA · PURE · Prajanya · AYURVEDA ·
               </textPath>
             </text>
           </svg>
