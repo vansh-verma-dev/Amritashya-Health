@@ -4,7 +4,8 @@ import NotFound from "./Components/Notefounf";
 import AboutAmritashya from "./pages/About/about";
 import Contact from "./pages/Contact/contact";
 import ProductView from "./Product/productView";
-import Signin from "./Account/signIn";
+import Account from "./Account/Account";
+import MyCart from "./CartPage/Cart";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/AboutPage" element={<AboutAmritashya />} />
         <Route path="/Contact" element={<Contact/>}/>
         <Route path="/ProductView" element={<ProductView/>}/>
-        <Route path="/Createaccount" element={<Signin/>}/>
+        <Route path="/MyCart" element={<MyCart/>}/>
+        <Route path="/Createaccount" element={<Account/>}/>
 
         <Route path="*" element={<NotFound />} />
         

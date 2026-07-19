@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaStar, FaShoppingCart, FaLeaf } from "react-icons/fa";
 import { productsData } from "../Data/data";
+import { Link } from "react-router-dom";
 
 // Amritasya Ayurveda — Products Section
 // Palette: deep ink-green ground, turmeric + terracotta accents, warm
@@ -86,6 +87,7 @@ export default function Products() {
         </div>
 
         {/* Product cards */}
+      <Link to={"/ProductView"}>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {productsData.map((p) => (
             <div
@@ -162,15 +164,18 @@ export default function Products() {
                       )}
                     </div>
                   </div>
-                  <button className="flex items-center gap-2 rounded-full bg-[#16261C] px-4 py-2.5 text-xs font-medium text-[#C99A3D] transition-colors duration-300 hover:bg-[#C99A3D] hover:text-[#16261C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C99A3D]">
+                  <Link
+                    to={"/ProductView"}
+                    className="flex items-center gap-2 rounded-full bg-[#16261C] px-4 py-2.5 text-xs font-medium text-[#C99A3D] transition-colors duration-300 hover:bg-[#C99A3D] hover:text-[#16261C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C99A3D]">
                     <FaShoppingCart size={13} />
                     Add
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
           ))}
         </div>
+      </Link>
 
         {/* View all */}
         <div className="mt-10 text-center">
