@@ -13,7 +13,7 @@ function Navbar() {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Products", path: "/" },
+    { name: "Products", path: "/product" },
     { name: "About", path: "/AboutPage" },
     { name: "Health Solution", path: "/health-solution" },
     { name: "Contact", path: "/contact" },
@@ -48,8 +48,8 @@ function Navbar() {
 
         <ul className="hidden lg:flex items-center gap-8">
 
-          {navLinks.map((item) => (
-            <li key={item.path}>
+          {navLinks.map((item , i) => (
+            <li key={i}>
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
