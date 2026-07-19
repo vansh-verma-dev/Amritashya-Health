@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Signup from "./Signup";
-import Signin from "./Signin";
+import Signup from "./signup";
+import Signin from "./signin";
 
 function Account() {
   const [page, setPage] = useState("sign_in");
