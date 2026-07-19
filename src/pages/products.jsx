@@ -164,12 +164,11 @@ export default function Products() {
                       )}
                     </div>
                   </div>
-                  <Link
-                    to={"/ProductView"}
+                  <button
                     className="flex items-center gap-2 rounded-full bg-[#16261C] px-4 py-2.5 text-xs font-medium text-[#C99A3D] transition-colors duration-300 hover:bg-[#C99A3D] hover:text-[#16261C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C99A3D]">
                     <FaShoppingCart size={13} />
                     Add
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
