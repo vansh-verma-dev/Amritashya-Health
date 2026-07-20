@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {   NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import myLogo from "../assets/PLogo.png";
 import { FaRegUser } from "react-icons/fa6";
@@ -24,39 +24,38 @@ function Navbar() {
       <div className="max-w-7xl mx-auto h-20 px-5 flex items-center justify-between">
 
         {/* Logo */}
-     <Link to="/">
-        <div className="flex items-center gap-3 cursor-pointer">
+        <Link to="/">
+          <div className="flex items-center gap-3 cursor-pointer">
 
-         <img src={myLogo} alt="Amritasya Logo"
-            className="w-12 h-12 rounded-full object-cover border-2 border-green-600"
-          />
+            <img src={myLogo} alt="Amritasya Logo"
+              className="w-12 h-12 rounded-full object-cover border-2 border-green-600"
+            />
 
-          <div>
-            <h1 className="text-2xl font-bold text-green-700">
-              Prajanya
-            </h1>
+            <div>
+              <h1 className="text-2xl font-bold text-green-700">
+                Prajanya
+              </h1>
 
-            <p className="text-xs tracking-[4px] text-gray-500">
-             Healthcares
-            </p>
+              <p className="text-xs tracking-[4px] text-gray-500">
+                Healthcares
+              </p>
+            </div>
+
           </div>
-
-        </div>
-     </Link>
+        </Link>
 
         {/* Desktop Menu */}
 
         <ul className="hidden lg:flex items-center gap-8">
 
-          {navLinks.map((item , i) => (
+          {navLinks.map((item, i) => (
             <li key={i}>
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `font-medium transition ${
-                    isActive
-                      ? "text-green-700"
-                      : "text-gray-700 hover:text-green-700"
+                  `font-medium transition ${isActive
+                    ? "text-green-700"
+                    : "text-gray-700 hover:text-green-700"
                   }`
                 }
               >
@@ -71,25 +70,30 @@ function Navbar() {
 
         <div className="hidden lg:flex items-center gap-3">
 
-        <Link to={"/Createaccount"}>
-          <button className="w-11 h-11 rounded-full bg-green-50 hover:bg-green-700 hover:text-white transition flex items-center justify-center text-xl">
-            <FaRegUser />
-          </button>
-        </Link>
+          <Link to={"/Createaccount"}>
+            <button className="w-11 h-11 rounded-full bg-green-50 hover:bg-green-700 hover:text-white transition flex items-center justify-center text-xl">
+              <FaRegUser />
+            </button>
+          </Link>
 
           <button className="w-11 h-11 rounded-full bg-green-50 hover:bg-green-700 hover:text-white transition flex items-center justify-center text-xl">
             <FaRegHeart />
           </button>
 
-          <button className="relative w-11 h-11 rounded-full bg-green-700 text-white hover:bg-green-800 transition flex items-center justify-center text-2xl">
+          <Link
+            to={"/MyCart"}
+          >
+            <button className="relative w-11 h-11 rounded-full bg-green-700 text-white hover:bg-green-800 transition flex items-center justify-center text-2xl">
 
-            <IoCartOutline />
+              <IoCartOutline />
 
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">
-              2
-            </span>
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">
+                2
+              </span>
 
-          </button>
+            </button>
+          </Link>
+
 
         </div>
 
@@ -107,9 +111,8 @@ function Navbar() {
       {/* Mobile Menu */}
 
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          open ? "max-h-[500px]" : "max-h-0"
-        }`}
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${open ? "max-h-[500px]" : "max-h-0"
+          }`}
       >
         <div className="px-5 py-5 bg-white border-t">
 
@@ -131,17 +134,21 @@ function Navbar() {
 
           <div className="flex gap-4 mt-6">
 
-            <button className="w-11 h-11 rounded-full bg-green-100 flex justify-center items-center">
-              <FaRegUser />
-            </button>
+            <Link to={"/Createaccount"}>
+              <button className="w-11 h-11 rounded-full bg-green-100 flex justify-center items-center">
+                <FaRegUser />
+              </button>
+            </Link>
 
             <button className="w-11 h-11 rounded-full bg-green-100 flex justify-center items-center">
               <FaRegHeart />
             </button>
 
+           <Link to={"/MyCart"}>
             <button className="w-11 h-11 rounded-full bg-green-700 text-white flex justify-center items-center">
-              <IoCartOutline />
+              <IoCartOutline  />
             </button>
+           </Link>
 
           </div>
 
