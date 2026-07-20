@@ -17,10 +17,9 @@ export const productsData = [
     badge: ["Bestseller", "100% Herbal", "Doctor Recommended"],
     images: [
       "https://gqfeipyaxweijhrlrxqt.supabase.co/storage/v1/object/public/images/piles-care-kit/Piles%20kit%201.jpg",
-      "/images/piles-kit/1.webp",
-      "/images/piles-kit/2.webp",
-      "/images/piles-kit/3.webp",
-      "/images/piles-kit/4.webp",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fpiles-care-kit%2FPiles%2520kit%25202.jpg&w=1920&q=75",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fpiles-care-kit%2FPiles%2520kit%25203.jpg&w=1920&q=75",
+  
     ],
     shortDescription:
       "Complete Ayurvedic treatment kit designed to provide long-lasting relief from piles, fissures, constipation, and rectal discomfort without surgery.",
@@ -156,10 +155,9 @@ export const productsData = [
     badge: ["Bestseller", "100% Herbal", "Doctor Recommended"],
     images: [
       "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fshilajit%2FResin%2520Amritashya%2520Ayurveda%25201.jpg&w=1920&q=75",
-      "/images/piles-kit/1.webp",
-      "/images/piles-kit/2.webp",
-      "/images/piles-kit/3.webp",
-      "/images/piles-kit/4.webp",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fshilajit%2FResin%2520Amiritashya%2520Ayurveda%25202.jpg&w=1920&q=75",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fshilajit%2FResin%2520Amiritashya%2520Ayurveda%25203.png&w=1920&q=75",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fshilajit%2FResin%2520Amiritashya%2520Ayurveda%25204.jpg&w=1920&q=75",
     ],
     shortDescription:
       "The Ultimate Natural Source of Energy, Strength & Vitality",
@@ -295,10 +293,10 @@ export const productsData = [
     badge: ["Bestseller", "100% Herbal", "Doctor Recommended"],
     images: [
       "https://gqfeipyaxweijhrlrxqt.supabase.co/storage/v1/object/public/images/81085e77-3986-4e55-8d27-fded0c5c735b/1jytly3khxw_1771949283023.jpg",
-      "/images/piles-kit/1.webp",
-      "/images/piles-kit/2.webp",
-      "/images/piles-kit/3.webp",
-      "/images/piles-kit/4.webp",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2F81085e77-3986-4e55-8d27-fded0c5c735b%2Flfonhq8glh9_1771949283895.jpg&w=1920&q=75",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2F81085e77-3986-4e55-8d27-fded0c5c735b%2Fzrsbvsez0kh_1771949284192.jpg&w=1920&q=75",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2F81085e77-3986-4e55-8d27-fded0c5c735b%2Fdd6252s3szp_1771949284485.jpg&w=1920&q=75",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2F81085e77-3986-4e55-8d27-fded0c5c735b%2Fyma02u2xbj8_1772018453622.jpg&w=1920&q=75",
     ],
     shortDescription:
       "The Ultimate Natural Source of Energy, Strength & Vitality",

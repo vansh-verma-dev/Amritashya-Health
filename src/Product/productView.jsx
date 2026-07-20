@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { HiOutlineTruck, HiOutlineRefresh, HiOutlineShieldCheck } from "react-icons/hi";
 import { productsData } from "../Data/data";
+import { useParams } from "react-router-dom";
 import Footer from "../pages/Footer";
  
 
@@ -46,16 +47,20 @@ function Accordion({ title, children, defaultOpen = false }) {
   );
 }
 
-export default function ProductView({ product = productsData[0] }) {
+export default function ProductView() {
   const [activeImg, setActiveImg] = useState(0);
   const [imgFailed, setImgFailed] = useState({});
   const [qty, setQty] = useState(1);
 
+  const { id } = useParams();
+    const product = productsData.find(
+    (item) => item.id === Number(id)
+  );
   const images = product.images?.length ? product.images : [null];
 
   return (
     <div className="bg-white">
-      {/* Breadcrumb */}
+      
       <div className="mx-auto max-w-6xl px-5 pt-6 text-xs text-slate-400 sm:px-10">
         Home <span className="mx-1.5">/</span> Products{" "}
         <span className="mx-1.5">/</span>
@@ -66,13 +71,13 @@ export default function ProductView({ product = productsData[0] }) {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
           {/* ---------- Gallery ---------- */}
           <div>
-            <div className="aspect-square overflow-hidden rounded-2xl bg-slate-50 ring-1 ring-slate-100">
+            <div className="aspect-square overflow-hidden rounded-2xl bg-slate-50">
               {images[activeImg] && !imgFailed[activeImg] ? (
                 <img
                   src={images[activeImg]}
                   alt={product.name}
                   onError={() => setImgFailed((f) => ({ ...f, [activeImg]: true }))}
-                  className="h-full w-full object-contain p-8"
+                  className="h-full w-full object-contain p-8 bg-white rounded-4xl"
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center text-slate-300">
@@ -82,13 +87,13 @@ export default function ProductView({ product = productsData[0] }) {
             </div>
 
             {images.length > 1 && (
-              <div className="mt-4 flex gap-3 overflow-x-auto">
+              <div className="mt-4 p-2 flex gap-3 overflow-x-auto">
                 {images.map((img, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveImg(i)}
-                    className={`h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-slate-50 ring-1 transition-all ${
-                      activeImg === i ? "ring-2 ring-teal-500" : "ring-slate-100 opacity-70 hover:opacity-100"
+                    className={`h-22 w-22 shrink-0 overflow-hidden rounded-xl bg-slate-50 ring-1 transition-all ${
+                      activeImg === i ? "ring-2 ring-gray-400" : "ring-slate-100 opacity-70 hover:opacity-100"
                     }`}
                   >
                     {img && !imgFailed[i] ? (
@@ -312,7 +317,7 @@ export default function ProductView({ product = productsData[0] }) {
         </button>
       </div>
 
-      {/* Spacer so the sticky bar doesn't cover content on mobile */}
+   
       <div className="h-16 lg:hidden" />
         <Footer/>
     </div>

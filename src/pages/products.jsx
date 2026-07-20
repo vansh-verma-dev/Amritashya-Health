@@ -3,10 +3,6 @@ import { FaStar, FaShoppingCart, FaLeaf } from "react-icons/fa";
 import { productsData } from "../Data/data";
 import { Link } from "react-router-dom";
 
-// Amritasya Ayurveda — Products Section
-// Palette: deep ink-green ground, turmeric + terracotta accents, warm
-// parchment cards — meant to read like an apothecary label rather than
-// a generic "wellness brand" template. Data-driven from ./productsData.js.
 
 function Stars({ rating }) {
   const rounded = Math.round(rating);
@@ -22,6 +18,9 @@ function Stars({ rating }) {
     </div>
   );
 }
+ 
+
+ 
 
 function ProductImage({ src, alt }) {
   const [failed, setFailed] = useState(false);
@@ -87,24 +86,21 @@ export default function Products() {
         </div>
 
         {/* Product cards */}
-      <Link to={"/ProductView"}>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {productsData.map((p) => (
             <div
               key={p.id}
-              className="group flex flex-col overflow-hidden rounded-2xl bg-[#F8F2E4] shadow-lg shadow-black/30 ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/30 focus-within:-translate-y-1.5"
+              className="group flex flex-col overflow-hidden rounded-[20px] bg-white ring-1 ring-black/[0.06] transition-all duration-300 hover:-translate-y-1 hover:ring-black/10 hover:shadow-[0_20px_40px_-16px_rgba(15,20,15,0.18)]"
             >
               {/* Image */}
               <div className="relative">
-                {/* Wax-seal category badge */}
-                <span className="absolute left-4 top-4 z-10 flex h-12 w-12 -rotate-6 items-center justify-center rounded-full bg-[#16261C] text-center text-[9px] font-semibold uppercase leading-tight text-[#C99A3D] ring-2 ring-[#C99A3D]/50">
+                {/* Category badge */}
+                <span className="absolute left-3 top-3 z-10 rounded-full bg-[#17181C] px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white">
                   {p.badge?.[0]}
                 </span>
                 {p.discount && (
-                  <span
-                    className="absolute right-0 top-4 z-10 bg-[#B5502E] py-1 pl-3 pr-4 text-[11px] font-bold text-[#FBEAE2]"
-                    style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%, 12% 50%)" }}
-                  >
+                  <span className="absolute right-3 top-3 z-10 rounded-full bg-[#0F6E5C] px-2.5 py-1 text-[10px] font-semibold text-white">
                     {p.discount}
                   </span>
                 )}
@@ -112,12 +108,12 @@ export default function Products() {
               </div>
 
               {/* Content */}
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="font-serif text-lg leading-snug text-[#2C2115]">
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="text-[18px] font-semibold leading-snug text-[#17181C]">
                   {p.name}
                 </h3>
                 {p.subHeading && (
-                  <p className="mt-1 text-xs text-[#8A7F68]">{p.subHeading}</p>
+                  <p className="mt-0.5 text-[12.5px] text-[#8A8778]">{p.subHeading}</p>
                 )}
 
                 {/* Extra trust badges */}
@@ -126,7 +122,7 @@ export default function Products() {
                     {p.badge.slice(1).map((b) => (
                       <span
                         key={b}
-                        className="rounded-full bg-[#EAF0E2] px-2.5 py-1 text-[10px] font-medium text-[#4B5E3D]"
+                        className="rounded-md bg-[#EEF0EA] px-2 py-0.5 text-[10.5px] font-medium text-[#4B5E3D]"
                       >
                         {b}
                       </span>
@@ -134,47 +130,38 @@ export default function Products() {
                   </div>
                 )}
 
-                <div className="mt-4 flex items-center gap-2">
+                <div className="mt-3 flex items-center gap-1.5">
                   <Stars rating={p.rating} />
-                  <span className="text-xs text-[#8A7F68]">
+                  <span className="text-[11.5px] text-[#8A8778]">
                     {p.rating} · {p.reviews} reviews
                     {p.sold ? ` · ${p.sold} sold` : ""}
                   </span>
                 </div>
 
-                {/* Perforated ticket-stub price row */}
-                <div className="mt-5 flex items-end justify-between border-t border-dashed border-[#D8CBA8] pt-4">
-                  <div className="relative pl-4">
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-0 top-[-17px] h-[calc(100%+17px)] border-l-2 border-dashed border-[#C99A3D]/40"
-                    />
-                    <span
-                      aria-hidden="true"
-                      className="absolute -left-[7px] -top-[21px] h-3 w-3 rounded-full bg-[#16261C] ring-4 ring-[#F8F2E4]"
-                    />
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-serif text-xl text-[#2C2115]">
-                        ₹{p.price}
+                {/* Price row */}
+                <div className="mt-5 flex items-end justify-between border-t border-[#EDEBE4] pt-4">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-[22px] font-semibold text-[#17181C]">
+                      ₹{p.price}
+                    </span>
+                    {p.originalPrice && (
+                      <span className="text-[21.5px] text-[#B7B3A4] line-through">
+                        ₹{p.originalPrice}
                       </span>
-                      {p.originalPrice && (
-                        <span className="text-sm text-[#B7AA8C] line-through">
-                          ₹{p.originalPrice}
-                        </span>
-                      )}
-                    </div>
+                    )}
                   </div>
-                  <button
-                    className="flex items-center gap-2 rounded-full bg-[#16261C] px-4 py-2.5 text-xs font-medium text-[#C99A3D] transition-colors duration-300 hover:bg-[#C99A3D] hover:text-[#16261C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C99A3D]">
+                  <Link
+                    to={`/ProductView/${p.id}`}
+                    className="flex items-center gap-2 rounded-full bg-[#17181C] px-4 py-2.5 text-xs font-medium text-white transition-colors duration-300 hover:bg-[#0F6E5C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6E5C]">
                     <FaShoppingCart size={13} />
-                    Add
-                  </button>
+                    Add to cart
+                  </Link>
                 </div>
               </div>
             </div>
           ))}
         </div>
-      </Link>
+
 
         {/* View all */}
         <div className="mt-10 text-center">
