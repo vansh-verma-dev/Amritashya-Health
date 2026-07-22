@@ -1,22 +1,28 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import myLogo from "../assets/PLogo.png";
 import { FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
+import LegalDropdown from "./LegalLink";
+
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [legalOpenMobile, setLegalOpenMobile] = useState(false);
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Products", path: "/product" },
     { name: "About", path: "/AboutPage" },
-    { name: "Health Solution", path: "/health-solution" },
     { name: "Contact", path: "/contact" },
+  ];
+
+  const legalLinks = [
+    { name: "Privacy Policy", path: "/privacy" },
+    { name: "Terms & Conditions", path: "/terms" },
+    { name: "Shipping Policy", path: "/shipping-policy" },
   ];
 
   return (
@@ -64,6 +70,7 @@ function Navbar() {
             </li>
           ))}
 
+          <LegalDropdown />
         </ul>
 
         {/* Right Icons */}
@@ -111,7 +118,7 @@ function Navbar() {
       {/* Mobile Menu */}
 
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${open ? "max-h-[500px]" : "max-h-0"
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${open ? "max-h-[600px]" : "max-h-0"
           }`}
       >
         <div className="px-5 py-5 bg-white border-t">
@@ -123,12 +130,60 @@ function Navbar() {
                 <NavLink
                   to={item.path}
                   onClick={() => setOpen(false)}
-                  className="text-gray-700 hover:text-green-700 font-medium"
+                  className={({ isActive }) =>
+                    `font-medium transition ${isActive
+                      ? "text-green-700"
+                      : "text-gray-700 hover:text-green-700"
+                    }`
+                  }
                 >
                   {item.name}
                 </NavLink>
               </li>
             ))}
+
+            {/* Legal accordion */}
+            <li>
+              <button
+                type="button"
+                onClick={() => setLegalOpenMobile((o) => !o)}
+                className="flex w-full items-center justify-between font-medium text-gray-700 hover:text-green-700"
+              >
+                Legal
+                <IoMenu
+                  className={`transition-transform duration-200 ${legalOpenMobile ? "rotate-90" : ""
+                    }`}
+                  size={16}
+                />
+              </button>
+
+              <div
+                className={`overflow-hidden transition-all duration-300 ${legalOpenMobile ? "max-h-40 mt-3" : "max-h-0"
+                  }`}
+              >
+                <ul className="flex flex-col gap-3 border-l-2 border-green-100 pl-4">
+                  {legalLinks.map((item) => (
+                    <li key={item.path}>
+                      <NavLink
+                        to={item.path}
+                        onClick={() => {
+                          setOpen(false);
+                          setLegalOpenMobile(false);
+                        }}
+                        className={({ isActive }) =>
+                          `text-sm font-medium transition ${isActive
+                            ? "text-green-700"
+                            : "text-gray-500 hover:text-green-700"
+                          }`
+                        }
+                      >
+                        {item.name}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
 
           </ul>
 
@@ -144,11 +199,11 @@ function Navbar() {
               <FaRegHeart />
             </button>
 
-           <Link to={"/MyCart"}>
-            <button className="w-11 h-11 rounded-full bg-green-700 text-white flex justify-center items-center">
-              <IoCartOutline  />
-            </button>
-           </Link>
+            <Link to={"/MyCart"}>
+              <button className="w-11 h-11 rounded-full bg-green-700 text-white flex justify-center items-center">
+                <IoCartOutline />
+              </button>
+            </Link>
 
           </div>
 

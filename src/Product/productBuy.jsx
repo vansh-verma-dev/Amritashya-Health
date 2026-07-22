@@ -28,7 +28,8 @@ function ProductBuy() {
     price: 599,
     mrp: 799,
     image:
-      "https://i.pinimg.com/1200x/76/31/15/763115615dcede1162e8479368e5b1f0.jpg",
+      "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fshilajit%2FResin%2520Amritashya%2520Ayurveda%25201.jpg&w=1920&q=75",
+
   };
 
   const shipping = 0;

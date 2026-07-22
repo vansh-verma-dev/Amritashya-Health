@@ -7,6 +7,10 @@ import ProductView from "./Product/productView";
 import Account from "./Account/Account";
 import MyCart from "./CartPage/Cart";
 import ProductBuy from "./Product/productBuy";
+import Profile from "./Components/profile";
+import Privacy from "./pages/legal/PrivacyPolicy";
+import Terms from "./pages/legal/terms";
+import ShippingPolicy from "./pages/legal/shipping";
 
 function App() {
   return (
@@ -18,8 +22,11 @@ function App() {
         <Route path="/ProductView/:id" element={<ProductView/>}/>
         <Route path="/MyCart" element={<MyCart/>}/>
         <Route path="/ProductBuy" element={<ProductBuy/>}/>
+        <Route path="/Privacy" element={<Privacy/>}/>
+        <Route path="/Terms" element={<Terms/>}/>
+        <Route path="/shipping-policy" element={<ShippingPolicy/>}/>
+        <Route path="/profile" element={<Profile/>}/>
         <Route path="/Createaccount" element={<Account/>}/>
-
         <Route path="*" element={<NotFound />} />
         
       </Routes>

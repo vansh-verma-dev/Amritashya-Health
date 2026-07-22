@@ -13,7 +13,8 @@ import { HiOutlineTruck, HiOutlineRefresh, HiOutlineShieldCheck } from "react-ic
 import { productsData } from "../Data/data";
 import { useParams } from "react-router-dom";
 import Footer from "../pages/Footer";
- 
+import { useNavigate } from "react-router-dom";
+
 
 function Stars({ rating, size = 13 }) {
   const rounded = Math.round(rating);
@@ -51,16 +52,17 @@ export default function ProductView() {
   const [activeImg, setActiveImg] = useState(0);
   const [imgFailed, setImgFailed] = useState({});
   const [qty, setQty] = useState(1);
+  const navigate = useNavigate();
 
   const { id } = useParams();
-    const product = productsData.find(
+  const product = productsData.find(
     (item) => item.id === Number(id)
   );
   const images = product.images?.length ? product.images : [null];
 
   return (
     <div className="bg-white">
-      
+
       <div className="mx-auto max-w-6xl px-5 pt-6 text-xs text-slate-400 sm:px-10">
         Home <span className="mx-1.5">/</span> Products{" "}
         <span className="mx-1.5">/</span>
@@ -92,9 +94,8 @@ export default function ProductView() {
                   <button
                     key={i}
                     onClick={() => setActiveImg(i)}
-                    className={`h-22 w-22 shrink-0 overflow-hidden rounded-xl bg-slate-50 ring-1 transition-all ${
-                      activeImg === i ? "ring-2 ring-gray-400" : "ring-slate-100 opacity-70 hover:opacity-100"
-                    }`}
+                    className={`h-22 w-22 shrink-0 overflow-hidden rounded-xl bg-slate-50 ring-1 transition-all ${activeImg === i ? "ring-2 ring-gray-400" : "ring-slate-100 opacity-70 hover:opacity-100"
+                      }`}
                   >
                     {img && !imgFailed[i] ? (
                       <img src={img} alt="" className="h-full w-full object-contain p-2" />
@@ -188,10 +189,16 @@ export default function ProductView() {
                 <FaShoppingCart size={14} />
                 Add to Cart
               </button>
-              <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-teal-600 py-3.5 text-sm font-semibold text-white shadow-md shadow-teal-600/20 transition-colors hover:bg-teal-700 active:scale-[0.98]">
+
+
+              <button
+                onClick={() => navigate("/ProductBuy")}
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-teal-600 py-3.5 text-sm font-semibold text-white shadow-md shadow-teal-600/20 transition-colors hover:bg-teal-700 active:scale-[0.98]"
+              >
                 <FaBolt size={14} />
                 Buy Now
               </button>
+
             </div>
 
             <a
@@ -317,10 +324,10 @@ export default function ProductView() {
         </button>
       </div>
 
-   
+
       <div className="h-16 lg:hidden" />
-        <Footer/>
+      <Footer />
     </div>
-  
+
   );
 }

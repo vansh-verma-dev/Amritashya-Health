@@ -1,9 +1,63 @@
 import { Link } from "react-router-dom";
 import myLogo from "../assets/PLogo.png";
+import { useState } from "react";
 
 function Signin({ setPage }) {
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
+    const [remember, setRemember] = useState(false);
+    const [message, setMessage] = useState({ type: "", text: "" });
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [id]: value,
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setMessage({ type: "", text: "" });
+
+        if (!formData.email || !formData.password) {
+            setMessage({ type: "error", text: "Please fill in both email and password." });
+            return;
+        }
+
+        // localStorage se saare registered users nikaalo
+        const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Email match karo (case-insensitive)
+        const matchedUser = existingUsers.find(
+            (u) => u.email.toLowerCase() === formData.email.toLowerCase()
+        );
+
+        if (!matchedUser) {
+            setMessage({ type: "error", text: "No account found with this email." });
+            return;
+        }
+
+        if (matchedUser.password !== formData.password) {
+            setMessage({ type: "error", text: "Incorrect password. Please try again." });
+            return;
+        }
+
+        // Login successful — current user ko localStorage me save karo
+        localStorage.setItem("currentUser", JSON.stringify(matchedUser));
+
+        setMessage({ type: "success", text: "Login successful! Redirecting..." });
+
+        // Thoda delay dekar home page pe bhejo (taaki success msg dikh jaye)
+        setTimeout(() => {
+            setPage("home");
+        }, 800);
+    };
+
     return (
-        <div className="min-h-screen w-full flex flex-col lg:flex-row bg-stone-50/50">
+        <div className="min-h-screen w-full h-[100vh] flex flex-col lg:flex-row bg-white">
 
             {/* Left Panel: Form */}
             <div className="w-full lg:w-1/2 flex flex-col justify-between px-6 sm:px-16 lg:px-24 py-8 bg-white shadow-xl lg:shadow-none z-10">
@@ -28,8 +82,24 @@ function Signin({ setPage }) {
                         </p>
                     </div>
 
+                    {/* Inline Message Banner (alert() ki jagah) */}
+                    {message.text && (
+                        <div
+                            className={`mb-4 flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium border ${
+                                message.type === "error"
+                                    ? "bg-red-50 border-red-200 text-red-700"
+                                    : "bg-emerald-50 border-emerald-200 text-emerald-700"
+                            }`}
+                        >
+                            <span className="text-base leading-none">
+                                {message.type === "error" ? "⚠️" : "✅"}
+                            </span>
+                            {message.text}
+                        </div>
+                    )}
+
                     {/* Form Fields */}
-                    <form className="w-full" onSubmit={(e) => e.preventDefault()}>
+                    <form className="w-full" onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label htmlFor="email" className="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1.5">
                                 Email Address
@@ -38,6 +108,8 @@ function Signin({ setPage }) {
                                 id="email"
                                 type="email"
                                 placeholder="name@example.com"
+                                value={formData.email}
+                                onChange={handleChange}
                                 className="w-full rounded-xl border border-stone-200 px-4 py-3 text-[15px] text-stone-800 placeholder:text-stone-400 bg-stone-50/50 transition duration-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 outline-none"
                             />
                         </div>
@@ -55,6 +127,8 @@ function Signin({ setPage }) {
                                 id="password"
                                 type="password"
                                 placeholder="••••••••"
+                                value={formData.password}
+                                onChange={handleChange}
                                 className="w-full rounded-xl border border-stone-200 px-4 py-3 text-[15px] text-stone-800 placeholder:text-stone-400 bg-stone-50/50 transition duration-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 outline-none"
                             />
                         </div>
@@ -63,6 +137,8 @@ function Signin({ setPage }) {
                             <input
                                 id="remember"
                                 type="checkbox"
+                                checked={remember}
+                                onChange={(e) => setRemember(e.target.checked)}
                                 className="mt-1 h-4 w-4 rounded border-stone-300 text-emerald-700 focus:ring-emerald-600 focus:ring-offset-0 cursor-pointer"
                             />
                             <label htmlFor="remember" className="text-xs text-stone-500 leading-normal cursor-pointer select-none">
@@ -71,7 +147,6 @@ function Signin({ setPage }) {
                         </div>
 
                         <button
-
                             type="submit"
                             className="w-full rounded-xl bg-emerald-800 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-800/20 transition duration-200 hover:bg-emerald-900 hover:shadow-emerald-900/30 active:scale-[0.99]"
                         >

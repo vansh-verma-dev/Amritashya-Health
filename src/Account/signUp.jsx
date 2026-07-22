@@ -1,9 +1,74 @@
 import { Link } from "react-router-dom";
 import myLogo from "../assets/PLogo.png";
+import { useState } from "react";
 
 function Signup({ setPage }) {
+    const [user, setUser] = useState({
+        fullName: "",
+        email: "",
+        password: "",
+    });
+    const [agreed, setAgreed] = useState(false);
+
+ 
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setUser((prev) => ({
+            ...prev,
+            [id]: value,
+        }));
+    };
+
+    
+   const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!user.fullName || !user.email || !user.password) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    if (user.password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return;
+    }
+
+    if (!agreed) {
+        alert("Please agree to Terms of Service and Privacy Policy");
+        return;
+    }
+
+ 
+    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+     
+    const alreadyExists = existingUsers.some(
+        (u) => u.email.toLowerCase() === user.email.toLowerCase()
+    );
+
+    if (alreadyExists) {
+        alert("An account with this email already exists");
+        return;
+    }
+ 
+    const updatedUsers = [...existingUsers, user];
+
+   
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+ 
+    localStorage.setItem("currentUser", JSON.stringify(user));
+
+    alert("Account created successfully!");
+
+   
+    setUser({ fullName: "", email: "", password: "" });
+    setAgreed(false);
+ 
+    setPage("home");
+};
     return (
-        <div className="min-h-screen w-full flex flex-col lg:flex-row bg-stone-50/50">
+        <div className="min-h-screen w-full flex flex-col lg:flex-row bg-white">
 
             {/* Left: Form Panel */}
             <div className="w-full lg:w-1/2 flex flex-col justify-between px-6 sm:px-16 lg:px-24 py-8 bg-white shadow-xl lg:shadow-none z-10">
@@ -28,7 +93,7 @@ function Signup({ setPage }) {
                         </p>
                     </div>
 
-                    <form className="w-full" onSubmit={(e) => e.preventDefault()}>
+                    <form className="w-full" onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label htmlFor="fullName" className="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1.5">
                                 Full Name
@@ -37,6 +102,8 @@ function Signup({ setPage }) {
                                 id="fullName"
                                 type="text"
                                 placeholder="John Doe"
+                                value={user.fullName}
+                                onChange={handleChange}
                                 className="w-full rounded-xl border border-stone-200 px-4 py-3 text-[15px] text-stone-800 placeholder:text-stone-400 bg-stone-50/50 transition duration-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 outline-none"
                             />
                         </div>
@@ -49,6 +116,8 @@ function Signup({ setPage }) {
                                 id="email"
                                 type="email"
                                 placeholder="name@example.com"
+                                value={user.email}
+                                onChange={handleChange}
                                 className="w-full rounded-xl border border-stone-200 px-4 py-3 text-[15px] text-stone-800 placeholder:text-stone-400 bg-stone-50/50 transition duration-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 outline-none"
                             />
                         </div>
@@ -61,6 +130,8 @@ function Signup({ setPage }) {
                                 id="password"
                                 type="password"
                                 placeholder="••••••••"
+                                value={user.password}
+                                onChange={handleChange}
                                 className="w-full rounded-xl border border-stone-200 px-4 py-3 text-[15px] text-stone-800 placeholder:text-stone-400 bg-stone-50/50 transition duration-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 outline-none"
                             />
                         </div>
@@ -70,6 +141,8 @@ function Signup({ setPage }) {
                             <input
                                 id="terms"
                                 type="checkbox"
+                                checked={agreed}
+                                onChange={(e) => setAgreed(e.target.checked)}
                                 className="mt-1 h-4 w-4 rounded border-stone-300 text-emerald-700 focus:ring-emerald-600 focus:ring-offset-0 cursor-pointer"
                             />
                             <label htmlFor="terms" className="text-xs text-stone-500 leading-normal cursor-pointer select-none">
@@ -109,7 +182,6 @@ function Signup({ setPage }) {
             {/* Right: Premium Brand Panel */}
             <div className="hidden lg:flex w-1/2 relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800 text-white flex-col justify-between p-16">
 
-
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-emerald-700/20 blur-3xl pointer-events-none transform translate-x-1/3 -translate-y-1/3" />
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-emerald-600/10 blur-3xl pointer-events-none transform -translate-x-1/4 translate-y-1/4" />
 
@@ -130,7 +202,6 @@ function Signup({ setPage }) {
                         Create an account to unlock tailored diagnostic routines, expert consulting, and access personalized Ayurvedic formulations built just for your lifestyle.
                     </p>
 
-                    {/* Visual USP accents to fill empty spaces cleanly */}
                     <div className="grid grid-cols-2 gap-4 mt-8 pt-8 border-t border-emerald-800/60">
                         <div>
                             <h4 className="font-semibold text-white text-sm">100% Holistic</h4>
