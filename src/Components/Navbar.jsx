@@ -7,6 +7,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import LegalDropdown from "./LegalLink";
+import { MdDashboard } from "react-icons/md";
 
 
 function Navbar() {
@@ -15,8 +16,10 @@ function Navbar() {
 
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "Product", path: "/ProductHome" },
     { name: "About", path: "/AboutPage" },
     { name: "Contact", path: "/contact" },
+
   ];
 
   const legalLinks = [
@@ -83,9 +86,13 @@ function Navbar() {
             </button>
           </Link>
 
-          <button className="w-11 h-11 rounded-full bg-green-50 hover:bg-green-700 hover:text-white transition flex items-center justify-center text-xl">
-            <FaRegHeart />
-          </button>
+          <Link
+            to={"/AdminOrders"}
+          >
+            <button className="w-11 h-11 rounded-full bg-green-50 hover:bg-green-700 hover:text-white transition flex items-center justify-center text-xl">
+              <MdDashboard />
+            </button>
+          </Link>
 
           <Link
             to={"/MyCart"}
@@ -195,13 +202,15 @@ function Navbar() {
               </button>
             </Link>
 
-            <button className="w-11 h-11 rounded-full bg-green-100 flex justify-center items-center">
-              <FaRegHeart />
-            </button>
-
             <Link to={"/MyCart"}>
               <button className="w-11 h-11 rounded-full bg-green-700 text-white flex justify-center items-center">
                 <IoCartOutline />
+              </button>
+            </Link>
+
+            <Link to={"/AdminOrders"}>
+              <button className="w-11 h-11 rounded-full bg-green-100 flex justify-center items-center">
+                <MdDashboard />
               </button>
             </Link>
 

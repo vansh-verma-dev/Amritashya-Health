@@ -11,6 +11,13 @@ import Profile from "./Components/profile";
 import Privacy from "./pages/legal/PrivacyPolicy";
 import Terms from "./pages/legal/terms";
 import ShippingPolicy from "./pages/legal/shipping";
+import ProductHome from "./Product/productHome";
+import AdminPage from "./Admin/admin";
+ import { CartProvider } from "./context/CartContext";
+
+<CartProvider>
+  <App />
+</CartProvider>
 
 function App() {
   return (
@@ -19,6 +26,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/AboutPage" element={<AboutAmritashya />} />
         <Route path="/Contact" element={<Contact/>}/>
+        <Route path="/ProductHome" element={<ProductHome/>}/>
         <Route path="/ProductView/:id" element={<ProductView/>}/>
         <Route path="/MyCart" element={<MyCart/>}/>
         <Route path="/ProductBuy" element={<ProductBuy/>}/>
@@ -26,9 +34,11 @@ function App() {
         <Route path="/Terms" element={<Terms/>}/>
         <Route path="/shipping-policy" element={<ShippingPolicy/>}/>
         <Route path="/profile" element={<Profile/>}/>
-        <Route path="/Createaccount" element={<Account/>}/>
+        <Route path="/Createaccount" element={<Account/>}/> 
+        <Route path="/AdminOrders" element={<AdminPage/>}/>
+        {/* <Route path="/ShipmentCard" element={<ShipmentTracking/>}/> */}
         <Route path="*" element={<NotFound />} />
-        
+   
       </Routes>
     </>
   )

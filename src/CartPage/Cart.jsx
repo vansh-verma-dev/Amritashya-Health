@@ -1,73 +1,25 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import myLogo from "../assets/PLogo.png";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../pages/Footer";
-
- 
-const INITIAL_CART = [
-    {
-        id: 1,
-        name: "Ashwagandha Gold Max",
-        category: "Stress & Vitality Capsules",
-        price: 899,
-        quantity: 1,
-        image: "https://images.unsplash.com/photo-1611070973770-b1a672610491?w=150&auto=format&fit=crop&q=60", // Replace with actual image path
-        inStock: true
-    },
-    {
-        id: 2,
-        name: "Triphala Organic Juice",
-        category: "Digestive & Detox Care",
-        price: 450,
-        quantity: 2,
-        image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=150&auto=format&fit=crop&q=60",
-        inStock: true
-    }
-];
+import Navbar from "../Components/Navbar";
+import { useCart } from "../context/CartContext";
 
 function MyCart() {
-    const [cartItems, setCartItems] = useState(INITIAL_CART);
- 
-    const updateQuantity = (id, delta) => {
-        setCartItems(prev =>
-            prev.map(item =>
-                item.id === id
-                    ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-                    : item
-            )
-        );
-    };
-
-    const removeItem = (id) => {
-        setCartItems(prev => prev.filter(item => item.id !== id));
-    };
-
+    const { cartItems, updateQuantity, removeFromCart } = useCart();
+    const navigate = useNavigate();
+const images = "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fpiles-care-kit%2FPiles%2520kit%25203.jpg&w=1920&q=75"
     // Price Calculations
     const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-    const shipping = subtotal > 1000 ? 0 : 80; // Free shipping above 1000
+    const shipping = subtotal > 1000 ? 0 : 80;
     const total = subtotal + shipping;
+  
 
     return (
         <div className="min-h-screen w-full bg-stone-50/50 text-stone-900">
-            
-          
-            <header className="w-full bg-white border-b border-stone-200 sticky top-0 z-50 px-6 lg:px-16 py-4 flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-3">
-                    <img src={myLogo} alt="Prajanya logo" className="h-8 w-8 object-contain" />
-                    <span className="flex flex-col leading-none">
-                        <h2 className="text-sm font-bold tracking-tight text-emerald-900 uppercase">Prajanya</h2>
-                        <span className="text-[9px] font-medium text-stone-400 tracking-widest uppercase mt-0.5">Health Cares</span>
-                    </span>
-                </Link>
-                <Link to="/" className="text-sm font-semibold text-emerald-800 hover:text-emerald-950 transition underline underline-offset-4">
-                    Continue Shopping
-                </Link>
-            </header>
-
+            <Navbar />
             {/* Main Layout Container */}
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 <h1 className="text-3xl font-bold tracking-tight text-stone-900 mb-8 flex items-center gap-3">
-                    Shopping Cart 
+                    Shopping Cart
                     <span className="text-sm font-medium px-2.5 py-0.5 rounded-full bg-stone-200 text-stone-700">
                         {cartItems.reduce((acc, i) => acc + i.quantity, 0)} Items
                     </span>
@@ -90,14 +42,14 @@ function MyCart() {
                 ) : (
                     /* Cart Content Present */
                     <div className="flex flex-col lg:flex-row gap-8 items-start">
-                        
+
                         {/* Left Section: Items List */}
                         <div className="w-full lg:w-2/3 space-y-4">
                             {cartItems.map((item) => (
                                 <div key={item.id} className="bg-white rounded-2xl border border-stone-200 p-4 sm:p-5 flex flex-row gap-4 sm:gap-6 items-center shadow-sm relative overflow-hidden transition hover:border-stone-300">
                                     {/* Item Image */}
                                     <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-stone-100 border border-stone-100 flex-shrink-0 overflow-hidden">
-                                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                                        <img src={images} alt={item.name} className="w-full h-full object-cover" />
                                     </div>
 
                                     {/* Item Info & Actions */}
@@ -114,14 +66,14 @@ function MyCart() {
                                         <div className="flex items-center justify-between sm:justify-end gap-6 sm:gap-10">
                                             {/* Quantity Adjuster */}
                                             <div className="flex items-center border border-stone-200 bg-stone-50 rounded-xl p-1">
-                                                <button 
+                                                <button
                                                     onClick={() => updateQuantity(item.id, -1)}
                                                     className="w-8 h-8 flex items-center justify-center font-bold text-stone-500 hover:text-stone-900 rounded-lg hover:bg-white transition"
                                                 >
                                                     -
                                                 </button>
                                                 <span className="w-8 text-center text-sm font-bold text-stone-800">{item.quantity}</span>
-                                                <button 
+                                                <button
                                                     onClick={() => updateQuantity(item.id, 1)}
                                                     className="w-8 h-8 flex items-center justify-center font-bold text-stone-500 hover:text-stone-900 rounded-lg hover:bg-white transition"
                                                 >
@@ -139,8 +91,8 @@ function MyCart() {
                                     </div>
 
                                     {/* Delete Button */}
-                                    <button 
-                                        onClick={() => removeItem(item.id)}
+                                    <button
+                                        onClick={() => removeFromCart(item.id)}
                                         className="absolute top-4 right-4 text-stone-400 hover:text-red-600 transition p-1"
                                         title="Remove Item"
                                     >
@@ -181,7 +133,9 @@ function MyCart() {
                                 <span className="text-2xl font-black text-emerald-950">₹{total}</span>
                             </div>
 
-                            <button className="w-full rounded-xl bg-emerald-800 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-800/20 hover:bg-emerald-900 transition duration-200 active:scale-[0.99] mb-4">
+                            <button
+                                onClick={() => navigate("/ProductBuy")}
+                                className="w-full rounded-xl bg-emerald-800 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-800/20 hover:bg-emerald-900 transition duration-200 active:scale-[0.99] mb-4">
                                 Proceed to Checkout
                             </button>
 
@@ -205,7 +159,7 @@ function MyCart() {
                     </div>
                 )}
             </main>
-            <Footer/>
+            <Footer />
         </div>
     );
 }

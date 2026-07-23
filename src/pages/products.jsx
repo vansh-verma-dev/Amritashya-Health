@@ -47,7 +47,7 @@ function ProductImage({ src, alt }) {
 
 export default function Products() {
   return (
-    <section className="relative overflow-hidden bg-[#16261C] py-20 text-stone-300">
+    <section className="relative overflow-hidden bg-[#16261C] py-20 text-stone-300 " id="products">
       {/* Botanical line art */}
       <svg
         className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 text-[#C99A3D]/10 sm:h-96 sm:w-96"
@@ -87,7 +87,7 @@ export default function Products() {
 
         {/* Product cards */}
 
-       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="products">
           {productsData.map((p) => (
             <div
               key={p.id}

@@ -113,7 +113,7 @@ function Hero() {
         {/* Left Content */}
         <div>
 
-         
+
           <div className="ayur-rise ayur-d1 inline-flex items-center gap-2 bg-transparent border border-dashed border-[#1E3A2B]/40 text-[#1E3A2B] px-4 py-2 rounded-full text-xs font-semibold tracking-[0.15em] uppercase">
             <ShieldCheck className="w-4 h-4 text-[#C89A3B]" strokeWidth={2.5} />
             Trusted by 50,000+ Families
@@ -121,30 +121,33 @@ function Hero() {
 
           {/* Heading */}
           <h1 className="ayur-rise ayur-d2 ayur-display mt-6 text-4xl md:text-5xl lg:text-[3.6rem] font-medium text-[#1E3A2B] leading-[1.08]">
-          Your Journey to
+            Your Journey to
           </h1>
           <h1 className="ayur-rise ayur-d3 ayur-display italic text-4xl md:text-5xl lg:text-[3.6rem] font-medium text-green-700 leading-[1.08]">
-     Natural Healing Starts Here
+            Natural Healing Starts Here
           </h1>
 
           {/* Description */}
           <p className="ayur-rise ayur-d4 mt-6 text-[#3F4A3F]/80 text-lg leading-8 max-w-xl">
-       Discover authentic Ayurvedic formulations crafted to support digestive wellness and provide natural relief.
+            Discover authentic Ayurvedic formulations crafted to support digestive wellness and provide natural relief.
           </p>
 
           {/* Buttons */}
           <div className="ayur-rise ayur-d5 mt-9 flex flex-col sm:flex-row gap-4">
 
-            <button className="ayur-cta-primary flex items-center justify-center gap-2 text-white px-7 py-4 rounded-xl font-semibold">
-              Shop Remedies
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <a href="#products">
+              <button className="ayur-cta-primary flex items-center justify-center gap-2 text-white px-7 py-4 rounded-xl font-semibold">
+                Shop Remedies
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </a>
 
-            <button className="ayur-cta-secondary flex items-center justify-center gap-2 border-2 border-[#1E3A2B] text-[#1E3A2B] hover:bg-[#1E3A2B] hover:text-white px-7 py-4 rounded-xl font-semibold">
-              Explore Solutions
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
+            <a href="#products">
+              <button className="ayur-cta-secondary flex items-center justify-center gap-2 border-2 border-[#1E3A2B] text-[#1E3A2B] hover:bg-[#1E3A2B] hover:text-white px-7 py-4 rounded-xl font-semibold">
+                Explore Solutions
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </a>
           </div>
 
           {/* Bottom Stats */}
@@ -175,7 +178,7 @@ function Hero() {
           {/* Soft background wash */}
           <div className="absolute w-[340px] h-[340px] md:w-[460px] md:h-[460px] rounded-full bg-[#DCE6D6] blur-3xl opacity-70"></div>
 
-         
+
           <svg
             className="ayur-seal absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] z-10"
             viewBox="0 0 400 400"

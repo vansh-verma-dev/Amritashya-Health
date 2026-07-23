@@ -14,6 +14,8 @@ import { productsData } from "../Data/data";
 import { useParams } from "react-router-dom";
 import Footer from "../pages/Footer";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Components/Navbar";
+import { useCart } from "../context/CartContext";
 
 
 function Stars({ rating, size = 13 }) {
@@ -49,6 +51,7 @@ function Accordion({ title, children, defaultOpen = false }) {
 }
 
 export default function ProductView() {
+  const { addToCart } = useCart();
   const [activeImg, setActiveImg] = useState(0);
   const [imgFailed, setImgFailed] = useState({});
   const [qty, setQty] = useState(1);
@@ -62,7 +65,7 @@ export default function ProductView() {
 
   return (
     <div className="bg-white">
-
+      <Navbar />
       <div className="mx-auto max-w-6xl px-5 pt-6 text-xs text-slate-400 sm:px-10">
         Home <span className="mx-1.5">/</span> Products{" "}
         <span className="mx-1.5">/</span>
@@ -185,20 +188,13 @@ export default function ProductView() {
             </div>
 
             <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-              <button className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-teal-600 py-3.5 text-sm font-semibold text-teal-600 transition-colors hover:bg-teal-50 active:scale-[0.98]">
+              <button
+                onClick={() => addToCart(product, qty)}
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-teal-600 py-3.5 text-sm font-semibold text-teal-600 transition-colors hover:bg-teal-50 active:scale-[0.98]"
+              >
                 <FaShoppingCart size={14} />
                 Add to Cart
               </button>
-
-
-              <button
-                onClick={() => navigate("/ProductBuy")}
-                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-teal-600 py-3.5 text-sm font-semibold text-white shadow-md shadow-teal-600/20 transition-colors hover:bg-teal-700 active:scale-[0.98]"
-              >
-                <FaBolt size={14} />
-                Buy Now
-              </button>
-
             </div>
 
             <a
@@ -318,7 +314,10 @@ export default function ProductView() {
             <p className="text-xs text-slate-400 line-through">₹{product.originalPrice}</p>
           )}
         </div>
-        <button className="flex flex-1 max-w-[220px] items-center justify-center gap-2 rounded-xl bg-teal-600 py-3 text-sm font-semibold text-white active:scale-[0.98]">
+        <button
+          onClick={() => { addToCart(product, qty); }}
+          className="flex flex-1 max-w-[220px] items-center justify-center gap-2 rounded-xl bg-teal-600 py-3 text-sm font-semibold text-white active:scale-[0.98]"
+        >
           <FaShoppingCart size={13} />
           Add to Cart
         </button>
