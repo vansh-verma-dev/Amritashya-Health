@@ -24,8 +24,9 @@ function ProductBuy() {
   const [showScanner, setShowScanner] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [placedItemCount, setPlacedItemCount] = useState(0);
+  const images = "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fpiles-care-kit%2FPiles%2520kit%25203.jpg&w=1920&q=75"
 
-  // ---- Totals calculated across ALL items in cartItems ----
+ 
   const shipping = 0;
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -82,6 +83,7 @@ function ProductBuy() {
     );
   }
 
+
   return (
     <>
       <Navbar />
@@ -129,8 +131,8 @@ function ProductBuy() {
                   className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-md sm:p-6"
                 >
                   <img
-                    src={item.image}
-                    alt={item.name}
+                    src={images}
+                    alt={"Prajanya"}
                     className="h-24 w-24 flex-shrink-0 rounded-xl object-cover shadow-md ring-1 ring-slate-100 sm:h-28 sm:w-28"
                   />
                   <div className="flex-1">
