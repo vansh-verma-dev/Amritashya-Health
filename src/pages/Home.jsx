@@ -1,5 +1,6 @@
 import Headline from "../Components/headline";
 import Navbar from "../Components/Navbar";
+import ReviewSection from "../Components/Riview";
 import FAQ from "./Faq";
 import Footer from "./Footer";
 import Hero from "./hero";
@@ -15,6 +16,7 @@ function Home(){
        <Headline/>
        <Products/>
        <WhyChooseUs/>
+       <ReviewSection/>
        <FAQ/>
        <Footer/>
         </>
