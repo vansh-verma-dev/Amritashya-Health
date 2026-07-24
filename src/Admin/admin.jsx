@@ -32,7 +32,9 @@ function AdminPage() {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/api/orders");
+      const res = await axios.get(
+        "https://amritashya-backend.onrender.com/api/orders"
+      );
 
       // Backend kabhi { orders: [...] } bhejta hai, kabhi seedha array — dono handle
       const data = Array.isArray(res.data) ? res.data : res.data.orders || [];
@@ -102,9 +104,8 @@ function AdminPage() {
                 </div>
                 {data.orderStatus && (
                   <span
-                    className={`rounded-full px-3 py-1 text-[11px] font-semibold ring-1 ${
-                      STATUS_STYLES[data.orderStatus] || "bg-slate-100 text-slate-500 ring-slate-200"
-                    }`}
+                    className={`rounded-full px-3 py-1 text-[11px] font-semibold ring-1 ${STATUS_STYLES[data.orderStatus] || "bg-slate-100 text-slate-500 ring-slate-200"
+                      }`}
                   >
                     {data.orderStatus}
                   </span>
@@ -160,11 +161,10 @@ function AdminPage() {
                   </p>
                   {data.paymentMethod && (
                     <span
-                      className={`mt-1 inline-block rounded-md px-2 py-0.5 text-[10px] font-semibold ${
-                        data.paymentMethod === "COD"
+                      className={`mt-1 inline-block rounded-md px-2 py-0.5 text-[10px] font-semibold ${data.paymentMethod === "COD"
                           ? "bg-[#D4AF37]/15 text-[#8a6d1f]"
                           : "bg-[#166534]/10 text-[#166534]"
-                      }`}
+                        }`}
                     >
                       {data.paymentMethod}
                     </span>

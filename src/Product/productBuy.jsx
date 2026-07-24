@@ -118,22 +118,22 @@ function ProductBuy() {
     };
 
 
-    try {
-      axios.post(
-        "https://amritashya-backend.onrender.com/api/orders",
-        orderData
-      );
+   try {
+  const res = await axios.post(
+    "https://amritashya-backend.onrender.com/api/orders",
+    orderData
+  );
 
-      console.log(res.data);
+  console.log(res.data);
 
-      setPlacedItemCount(cartItems.length);
-      setOrderPlaced(true);
-      clearCart();
+  setPlacedItemCount(cartItems.length);
+  setOrderPlaced(true);
+  clearCart();
 
-    } catch (error) {
-      console.error(error);
-      alert("Order Failed");
-    }
+} catch (error) {
+  console.error(error);
+  alert("Order Failed");
+}
   };
   // ---- Auto redirect to home after order placed ----
   const REDIRECT_SECONDS = 5;
