@@ -27,7 +27,7 @@ const sections = [
     body: (
       <>
         <p className="text-sm leading-relaxed text-slate-500">
-          Amritashya Ayurveda Pvt. Ltd. is committed to delivering your
+          Prajanya Healthcares Pvt. Ltd. is committed to delivering your
           order in good condition and on time.
         </p>
 
@@ -117,7 +117,7 @@ const sections = [
     body: (
       <>
         <p className="text-sm leading-relaxed text-slate-500">
-          Your privacy is our priority. Amritashya Ayurveda Pvt. Ltd.
+          Your privacy is our priority.  Prajanya Healthcares Pvt. Ltd.
           ensures:
         </p>
         <ul className="mt-3 space-y-3">
@@ -149,7 +149,7 @@ const sections = [
     body: (
       <>
         <p className="text-sm leading-relaxed text-slate-500">
-          By using the Amritashya Ayurveda website, you agree to the
+          By using the  Prajanya Healthcares website, you agree to the
           following:
         </p>
         <div className="mt-4 space-y-3">
@@ -232,7 +232,7 @@ function ShippingPolicy() {
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-500 sm:text-lg">
             Transparent policies to ensure a smooth and trustworthy
-            experience with Amritashya Ayurveda.
+            experience with Prajanya Ayurveda.
           </p>
         </div>
       </section>
@@ -242,14 +242,14 @@ function ShippingPolicy() {
         <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm font-semibold text-[#0F172A]">
-              Amritashya Ayurveda Pvt. Ltd.
+              Prajanya Ayurveda Pvt. Ltd.
             </p>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[#166534]/10 px-3 py-1 text-[11px] font-semibold text-[#166534]">
               <MdVerified /> Pan-India Delivery
             </span>
           </div>
           <p className="mt-3 text-sm leading-relaxed text-slate-500">
-            Amritashya Ayurveda Pvt. Ltd. is committed to delivering your
+            Prajanya Ayurveda Pvt. Ltd. is committed to delivering your
             order in good condition and on time.
           </p>
         </div>

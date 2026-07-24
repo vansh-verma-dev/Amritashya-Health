@@ -197,10 +197,10 @@ const sections = [
           )}
         </ul>
         <a
-          href="mailto:customercare@amritashya.in"
+          href="mailto:customercare@Prajanya.in"
           className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#166534]/10 px-4 py-2.5 text-sm font-semibold text-[#166534] transition-all duration-300 hover:bg-[#166534] hover:text-white"
         >
-          <FaEnvelope size={12} /> customercare@amritashya.in
+          <FaEnvelope size={12} /> Info@prajanyahealthcares.com
         </a>
       </>
     ),
@@ -239,7 +239,7 @@ function Privacy() {
             Privacy Policy
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-500 sm:text-lg">
-            Transparency and trust are at the core of Amritashya Ayurveda.
+            Transparency and trust are at the core of Prajanya Ayurveda.
             Please read our policies carefully to understand how we protect
             your data and the terms of using our services.
           </p>
@@ -259,7 +259,7 @@ function Privacy() {
             </span>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-slate-500">
-            Amritashya Ayurveda Pvt. Ltd. ("Company", "we", "our", "us")
+            Prajanya Ayurveda Pvt. Ltd. ("Company", "we", "our", "us")
             respects your privacy and is committed to protecting your
             personal information. This Privacy Policy explains how we
             collect, use, and safeguard your information when you access our

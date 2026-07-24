@@ -95,9 +95,8 @@ function Contact() {
             <p className="mt-2 text-xs leading-relaxed text-slate-500">
              Prajanya Healthcares Pvt. Ltd.
               <br />
-              Cabin No. 06, G-1 Floor, AGS Building
-              <br />
-              H-61, Sector 63, Noida, Uttar Pradesh
+               Address - 581, CHAMRAWAL Road, Baghpat Uttar Pradesh
+PIN Code: 250615
             </p>
           </div>
 
@@ -107,13 +106,13 @@ function Contact() {
               <FaWhatsapp className="text-white" size={17} />
             </span>
             <h3 className="mt-4 text-sm font-semibold text-[#0F172A]">Customer Support</h3>
-            <p className="mt-2 text-sm font-medium text-[#0F172A]">+91 93191 77676</p>
+            <p className="mt-2 text-sm font-medium text-[#0F172A]">+91 9430000048</p>
             <p className="text-xs text-slate-400">(WhatsApp & Call)</p>
             <p className="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
               <FaClock className="text-[#22C55E]" /> 10:00 AM – 6:00 PM (Mon–Sat)
             </p>
             <a
-              href="https://wa.me/919319177676"
+              href="https://wa.me/919430000048"
               target="_blank"
               rel="noreferrer"
               className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#166534]/10 px-4 py-2 text-xs font-semibold text-[#166534] transition-all duration-300 hover:bg-[#166534] hover:text-white"
@@ -128,10 +127,10 @@ function Contact() {
               <IoMdMailUnread className="text-white" size={17} />
             </span>
             <h3 className="mt-4 text-sm font-semibold text-[#0F172A]">Email Us</h3>
-            <p className="mt-2 text-sm font-medium text-[#0F172A]">customercare@amritashya.in</p>
+            <p className="mt-2 text-sm font-medium text-[#0F172A]">Info@prajanyahealthcares.com</p>
             <p className="mt-1 text-xs text-slate-500">We aim to respond within 24 hours.</p>
             <a
-              href="mailto:customercare@amritashya.in"
+              href="mailto:Info@prajanyahealthcares.com"
               className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#166534]/10 px-4 py-2 text-xs font-semibold text-[#166534] transition-all duration-300 hover:bg-[#166534] hover:text-white"
             >
               <IoMdMailUnread /> Send Email
@@ -309,7 +308,7 @@ function Contact() {
                 Chat with our Ayurvedic wellness experts directly on WhatsApp.
               </p>
               <a
-                href="https://wa.me/919319177676"
+                href="https://wa.me/919430000048"
                 target="_blank"
                 rel="noreferrer"
                 className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-xs font-semibold backdrop-blur-md transition-all duration-300 hover:bg-white/20"

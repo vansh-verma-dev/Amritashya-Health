@@ -29,7 +29,7 @@ const sections = [
       <>
         <p className="text-sm leading-relaxed text-slate-500">
           This website and all its content are the intellectual property of
-          Amritashya Ayurveda Pvt. Ltd., including:
+          Prajanya Healthcares Pvt. Ltd., including:
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
           {["Product names", "Logos", "Images", "Text", "Formulations", "Descriptions"].map((i) => (
@@ -192,26 +192,26 @@ const sections = [
     body: (
       <div className="space-y-3">
         <p className="text-sm font-semibold text-[#0F172A]">
-          Amritashya Ayurveda Pvt. Ltd.
+           Prajanya Healthcares Pvt. Ltd.
         </p>
         <div className="flex items-start gap-2.5 text-sm text-slate-600">
           <FaMapMarkerAlt className="mt-0.5 flex-shrink-0 text-[#166534]" size={13} />
-          Cabin No. 06, G-1 Floor, AGS Building, H-61, Sector 63, Noida,
-          Uttar Pradesh, India
+           Address - 581, CHAMRAWAL Road, Baghpat Uttar Pradesh
+PIN Code: 250615
         </div>
         <a
-          href="mailto:customercare@amritashya.in"
+          href="mailto:customercare@PrajanyaHealthcares.in"
           className="flex items-center gap-2.5 text-sm text-slate-600 transition-colors hover:text-[#166534]"
         >
           <IoMdMailUnread className="flex-shrink-0 text-[#166534]" size={14} />
-          customercare@amritashya.in
+          customercare@PrajanyaHealthcares.in
         </a>
         <a
-          href="tel:+919319177676"
+          href="tel:+ 9430000048"
           className="flex items-center gap-2.5 text-sm text-slate-600 transition-colors hover:text-[#166534]"
         >
           <FaPhoneAlt className="flex-shrink-0 text-[#166534]" size={12} />
-          +91 93191 77676
+          +91 9430000048
         </a>
       </div>
     ),
@@ -239,7 +239,7 @@ function Terms() {
             Terms & Conditions
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-500 sm:text-lg">
-            Transparency and trust are at the core of Amritashya Ayurveda.
+            Transparency and trust are at the core of  Prajanya Healthcares.
             Please read our terms carefully to understand the rules and
             regulations for using our services.
           </p>
@@ -251,7 +251,7 @@ function Terms() {
         <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm font-semibold text-[#0F172A]">
-              Amritashya Ayurveda Pvt. Ltd.
+               Prajanya Healthcares Pvt. Ltd.
             </p>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[#166534]/10 px-3 py-1 text-[11px] font-semibold text-[#166534]">
               <MdVerified /> Applies to All Users

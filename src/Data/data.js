@@ -1,10 +1,12 @@
+import photo1 from "../assets/photo1.PNG"
+
 export const productsData = [
   {
     id: 1,
-    slug: "amritashya-ayurveda-complete-piles-care-kit",
-    name: "Amritashya Ayurveda Complete Piles Care Kit",
+    slug: "Prajanya Healthcares-complete-piles-care-kit",
+    name: "Prajanya Healthcares Complete Piles Care Kit",
     subHeading: "A 3-Step Holistic Solution for Lasting Relief",
-    brand: "Amritashya Ayurveda",
+    brand: "Prajanya Healthcares",
     category: "Ayurvedic Medicine",
     rating: 4.8,
     reviews: 324,
@@ -16,7 +18,7 @@ export const productsData = [
     sku: "AA-PCK-001",
     badge: ["Bestseller", "100% Herbal", "Doctor Recommended"],
     images: [
-      "https://gqfeipyaxweijhrlrxqt.supabase.co/storage/v1/object/public/images/piles-care-kit/Piles%20kit%201.jpg",
+       photo1,
       "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fpiles-care-kit%2FPiles%2520kit%25202.jpg&w=1920&q=75",
       "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fpiles-care-kit%2FPiles%2520kit%25203.jpg&w=1920&q=75",
   
@@ -25,7 +27,7 @@ export const productsData = [
       "Complete Ayurvedic treatment kit designed to provide long-lasting relief from piles, fissures, constipation, and rectal discomfort without surgery.",
 
     description:
-      "Amritashya Ayurveda Complete Piles Care Kit is a clinically inspired Ayurvedic formulation that works on the root cause of piles instead of only relieving symptoms. It combines herbal capsules, digestive powder, and healing gel for complete internal and external care.",
+      "Prajanya Healthcares Complete Piles Care Kit is a clinically inspired Ayurvedic formulation that works on the root cause of piles instead of only relieving symptoms. It combines herbal capsules, digestive powder, and healing gel for complete internal and external care.",
 
     highlights: [
       "100% Herbal Formula",
@@ -124,10 +126,10 @@ export const productsData = [
     ],
 
     disclaimer:
-      "This is an Ayurvedic product. Results may vary depending on individual body constitution.",
+      "This is an Prajanya Healthcares. Results may vary depending on individual body constitution.",
 
     seo: {
-      title: "Amritashya Ayurveda Complete Piles Care Kit",
+      title: "Prajanya Healthcares Complete Piles Care Kit",
       keywords: [
         "Piles Medicine",
         "Ayurvedic Piles Treatment",
@@ -139,10 +141,10 @@ export const productsData = [
   },
     {
     id: 2,
-    slug: "Amritashya Ayurveda Pure Himalayan Shilajit",
-    name: "Amritashya Ayurveda Pure Himalayan Shilajit",
+    slug: "Prajanya Healthcares Pure Himalayan Shilajit",
+    name: "Prajanya Healthcares Pure Himalayan Shilajit",
     subHeading: "The Ultimate Natural Source of Energy & Vitality",
-    brand: "Amritashya Ayurveda",
+    brand: "Prajanya Healthcares",
     category: "Ayurvedic Medicine",
     rating: 4.8,
     reviews: 324,
@@ -163,7 +165,7 @@ export const productsData = [
       "The Ultimate Natural Source of Energy, Strength & Vitality",
 
     description:
-      "Amritashya Ayurveda Complete Piles Care Kit is a clinically inspired Ayurvedic formulation that works on the root cause of piles instead of only relieving symptoms. It combines herbal capsules, digestive powder, and healing gel for complete internal and external care.",
+      "Prajanya Healthcares Complete Piles Care Kit is a clinically inspired Ayurvedic formulation that works on the root cause of piles instead of only relieving symptoms. It combines herbal capsules, digestive powder, and healing gel for complete internal and external care.",
 
     highlights: [
       "100% Herbal Formula",
@@ -265,7 +267,7 @@ export const productsData = [
       "This is an Ayurvedic product. Results may vary depending on individual body constitution.",
 
     seo: {
-      title: "Amritashya Ayurveda Complete Piles Care Kit",
+      title: "Prajanya Healthcares Complete Piles Care Kit",
       keywords: [
         "Piles Medicine",
         "Ayurvedic Piles Treatment",
@@ -277,11 +279,11 @@ export const productsData = [
   },
     {
     id: 3,
-    slug: "Amritashya Dia Balance Herbal Powde  ",
-    name: "Amritashya Dia Balance Herbal Powde  ",
+    slug: "Prajanya Healthcares Dia Balance Herbal Powde  ",
+    name: "Prajanya Healthcares Herbal Powde  ",
     subHeading: "Dia Balance | Herbal Powder – A natural Ayurvedic blend for digestive wellness and healthy gut function",
-    brand: "Amritashya Ayurveda",
-    category: "Ayurvedic Medicine",
+    brand: "Prajanya Healthcares",
+    category: "Prajanya Healthcares",
     rating: 4.8,
     reviews: 324,
     sold: "5,000+",
@@ -302,7 +304,7 @@ export const productsData = [
       "The Ultimate Natural Source of Energy, Strength & Vitality",
 
     description:
-      "Amritashya Ayurveda Complete Piles Care Kit is a clinically inspired Ayurvedic formulation that works on the root cause of piles instead of only relieving symptoms. It combines herbal capsules, digestive powder, and healing gel for complete internal and external care.",
+      "Prajanya Healthcares Complete Piles Care Kit is a clinically inspired Ayurvedic formulation that works on the root cause of piles instead of only relieving symptoms. It combines herbal capsules, digestive powder, and healing gel for complete internal and external care.",
 
     highlights: [
       "100% Herbal Formula",
@@ -404,7 +406,7 @@ export const productsData = [
       "This is an Ayurvedic product. Results may vary depending on individual body constitution.",
 
     seo: {
-      title: "Amritashya Ayurveda Complete Piles Care Kit",
+      title: "Prajanya Healthcares Complete Piles Care Kit",
       keywords: [
         "Piles Medicine",
         "Ayurvedic Piles Treatment",

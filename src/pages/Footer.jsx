@@ -10,14 +10,14 @@ import { IoMdMailUnread } from "react-icons/io";
 
  
 
-const quickLinks = ["Home", "About Us", "Treatments", "Our Doctors", "Blog", "Contact"];
+const quickLinks = ["Home", "Product", "Treatments", "Riview", "Contact"];
 
 const treatments = [
-  "Panchakarma Therapy",
-  "Skin & Hair Care",
-  "Joint & Pain Care",
-  "Weight Management",
-  "Stress & Sleep Care",
+  "Piles Care Kit",
+  "Himalayan Shilajit",
+  " Herbal Powde",
+  "Liver Detox",
+  "Neem Tulsi Giloy Powder",
 ];
 
 export default function Footer() {
@@ -137,23 +137,21 @@ export default function Footer() {
               <li className="flex gap-3">
                 <FaMapPin className="mt-1 shrink-0 text-amber-400" size={14} />
                 <span>
-                  H-61, Sector 63,
+                    Address - 581, CHAMRAWAL Road, Baghpat Uttar Pradesh
                   <br />
-                  Noida, Uttar Pradesh, India
-                  <br />
-                  PIN Code: 201301
+                  PIN Code:  250615
                 </span>
               </li>
               <li className="flex gap-3">
                 <FaPhoneAlt className="mt-1 shrink-0 text-amber-400" size={13} />
                 <a href="tel:+911234567890" className="hover:text-amber-400">
-                  +91 12345 67890
+                  +91  9430000048
                 </a>
               </li>
               <li className="flex gap-3">
                 <IoMdMailUnread className="mt-1 shrink-0 text-amber-400" size={15} />
                 <a href="mailto:care@amritasyaayurveda.com" className="hover:text-amber-400">
-                  care@amritasyaayurveda.com
+                  Info@prajanyahealthcares.com
                 </a>
               </li>
               <li className="flex gap-3">
