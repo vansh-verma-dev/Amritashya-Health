@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../Components/Navbar";
-import ordersData from "../Data/ordersData";
 import { FaPhoneAlt, FaMapMarkerAlt, FaBoxOpen, FaRupeeSign } from "react-icons/fa";
 
 const STATUS_STYLES = {
@@ -22,6 +23,38 @@ function formatDate(iso) {
 }
 
 function AdminPage() {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  const fetchOrders = async () => {
+    try {
+      const res = await axios.get("http://127.0.0.1:5000/api/orders");
+
+      // Backend kabhi { orders: [...] } bhejta hai, kabhi seedha array — dono handle
+      const data = Array.isArray(res.data) ? res.data : res.data.orders || [];
+      setOrders(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen w-full bg-[#F8FAF9]">
+        <Navbar />
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <p className="text-sm text-slate-400">Loading orders...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen w-full bg-[#F8FAF9]">
       <Navbar />
@@ -44,7 +77,7 @@ function AdminPage() {
 
             <div className="flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-5 py-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#166534] to-[#22C55E] text-sm font-bold text-white shadow-md shadow-[#166534]/20">
-                {ordersData.length}
+                {orders.length}
               </span>
               <span className="text-sm font-medium text-slate-600">Total Orders</span>
             </div>
@@ -54,18 +87,18 @@ function AdminPage() {
 
       <div className="w-full px-5 py-8 sm:px-8 lg:px-12">
         <section className="space-y-4">
-          {ordersData.map((data) => (
+          {orders.map((data) => (
             <div
-              key={data.id}
+              key={data.id || data._id}
               className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-md sm:p-6"
             >
               {/* Top row: Order ID, date, status */}
               <div className="flex flex-wrap items-start justify-between gap-3 border-b border-slate-100 pb-4">
                 <div>
                   <p className="text-sm font-semibold text-[#0F172A]">
-                    Order <span className="text-[#166534]">#{data.id}</span>
+                    Order <span className="text-[#166534]">#{data.id || data._id}</span>
                   </p>
-                  <p className="mt-0.5 text-xs text-slate-400">{formatDate(data.date)}</p>
+                  <p className="mt-0.5 text-xs text-slate-400">{formatDate(data.date || data.createdAt)}</p>
                 </div>
                 {data.orderStatus && (
                   <span
@@ -123,7 +156,7 @@ function AdminPage() {
                   </p>
                   <p className="mt-1.5 flex items-center gap-1 text-lg font-bold text-[#166534]">
                     <FaRupeeSign size={13} />
-                    {data.price}
+                    {data.totalPrice ?? data.price}
                   </p>
                   {data.paymentMethod && (
                     <span
@@ -146,7 +179,7 @@ function AdminPage() {
                   <ul className="mt-1.5 space-y-1">
                     {data.products.map((p) => (
                       <li
-                        key={p.productId}
+                        key={p.productId || p.name}
                         className="text-xs font-medium text-slate-600"
                       >
                         {p.name}
@@ -158,7 +191,7 @@ function AdminPage() {
             </div>
           ))}
 
-          {ordersData.length === 0 && (
+          {orders.length === 0 && (
             <div className="rounded-2xl border border-slate-100 bg-white py-16 text-center text-sm text-slate-400 shadow-sm">
               No orders found.
             </div>

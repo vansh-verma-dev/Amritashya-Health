@@ -1,4 +1,6 @@
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaMapPin,
   FaPhoneAlt,
@@ -19,14 +21,35 @@ import { useCart } from "../context/CartContext";
 
 function ProductBuy() {
   const { cartItems, updateQuantity, clearCart } = useCart();
+  const navigate = useNavigate();
 
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const [showScanner, setShowScanner] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [placedItemCount, setPlacedItemCount] = useState(0);
-  const images = "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fpiles-care-kit%2FPiles%2520kit%25203.jpg&w=1920&q=75"
+  const [errorMsg, setErrorMsg] = useState("");
 
- 
+  // ---- Address / Customer form state ----
+  const [formData, setFormData] = useState({
+    customerName: "",
+    phone: "",
+    village: "",
+    nearByLocation: "",
+    city: "",
+    district: "",
+    state: "",
+    pincode: "",
+    notes: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const images =
+    "https://www.amritashya.in/_next/image?url=https%3A%2F%2Fgqfeipyaxweijhrlrxqt.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fpiles-care-kit%2FPiles%2520kit%25203.jpg&w=1920&q=75";
+
   const shipping = 0;
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -37,7 +60,8 @@ function ProductBuy() {
     0
   );
   const total = subtotal + shipping;
-  const discount = totalMrp > 0 ? Math.round(((totalMrp - subtotal) / totalMrp) * 100) : 0;
+  const discount =
+    totalMrp > 0 ? Math.round(((totalMrp - subtotal) / totalMrp) * 100) : 0;
 
   const handlePaymentSelect = (method) => {
     setPaymentMethod(method);
@@ -46,22 +70,105 @@ function ProductBuy() {
 
   const handlePayNow = () => paymentMethod === "online" && setShowScanner(true);
 
-  const handlePlaceOrder = () => {
-    // TODO: yahan par order data backend/Firebase me bhejna hai (admin panel ke liye)
+  // ---- Basic validation before placing order ----
+  const isFormValid = () => {
+    const required = [
+      "customerName",
+      "phone",
+      "village",
+      "city",
+      "district",
+      "state",
+      "pincode",
+    ];
+    return required.every((field) => formData[field].trim() !== "");
+  };
+
+  const handlePlaceOrder = async () => {
+  if (cartItems.length === 0) return;
+
+  if (!isFormValid()) {
+    setErrorMsg("Please fill all required address details before placing the order.");
+    return;
+  }
+
+  setErrorMsg("");
+
+  const orderData = {
+    customerName: formData.customerName,
+    phone: formData.phone,
+    products: cartItems.map((item) => ({
+      productId: item.id,
+      name: item.name,
+      image: item.image,
+      quantity: item.quantity,
+      price: item.price,
+    })),
+    totalPrice: total,
+    address: {
+      village: formData.village,
+      nearByLocation: formData.nearByLocation,
+      city: formData.city,
+      district: formData.district,
+      state: formData.state,
+      pincode: formData.pincode,
+    },
+    paymentMethod: paymentMethod === "cod" ? "COD" : "Online",
+    notes: formData.notes,
+  };
+
+
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/api/orders",
+      orderData
+    );
+
+    console.log(res.data);
+
     setPlacedItemCount(cartItems.length);
     setOrderPlaced(true);
-    clearCart(); // order confirm hote hi cart khali kar do
-  };
+    clearCart();
+
+  } catch (error) {
+    console.error(error);
+    alert("Order Failed");
+  }
+};
+  // ---- Auto redirect to home after order placed ----
+  const REDIRECT_SECONDS = 5;
+  const [secondsLeft, setSecondsLeft] = useState(REDIRECT_SECONDS);
+
+  useEffect(() => {
+    if (!orderPlaced) return;
+
+    setSecondsLeft(REDIRECT_SECONDS);
+
+    const interval = setInterval(() => {
+      setSecondsLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          navigate("/");
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [orderPlaced, navigate]);
 
   if (orderPlaced) {
     return (
-      <div className="flex min-h-[80vh] flex-col items-center justify-center bg-[#F8FAF9] px-6 text-center">
-        <span className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#166534] to-[#22C55E] shadow-xl shadow-[#166534]/30">
+      <div className="flex min-h-[100vh] flex-col items-center justify-center bg-[#F8FAF9] px-6 text-center">
+        <span className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#166534] to-[#22C55E] shadow-xl shadow-[#166534]/30 animate-[pop_0.4s_ease-out]">
           <FaCheckCircle size={34} className="text-white" />
         </span>
+
         <h1 className="mt-6 font-serif text-2xl font-semibold text-[#0F172A] sm:text-3xl">
           Order Placed Successfully!
         </h1>
+
         <p className="mt-3 max-w-sm text-sm text-slate-500">
           Thank you for choosing Amritasya Ayurveda. Your order for{" "}
           <span className="font-medium text-[#0F172A]">
@@ -70,19 +177,42 @@ function ProductBuy() {
           has been confirmed via{" "}
           {paymentMethod === "cod" ? "Cash on Delivery" : "Online Payment"}.
         </p>
+
         <p className="mt-1 text-xs text-slate-400">
           A confirmation email has been sent to your inbox.
         </p>
+
+        {/* Redirect info + progress bar */}
+        <div className="mt-6 w-full max-w-xs">
+          <p className="text-xs text-slate-400">
+            Redirecting to home in {secondsLeft}s...
+          </p>
+          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-[#166534] to-[#22C55E] transition-all duration-1000 ease-linear"
+              style={{
+                width: `${(secondsLeft / REDIRECT_SECONDS) * 100}%`,
+              }}
+            />
+          </div>
+        </div>
+
         <button
-          onClick={() => setOrderPlaced(false)}
+          onClick={() => navigate("/")}
           className="mt-8 rounded-xl bg-gradient-to-r from-[#166534] to-[#22C55E] px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-[#166534]/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
         >
-          Back to Store
+          Back to Store Now
         </button>
+
+        <style>{`
+          @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+          }
+        `}</style>
       </div>
     );
   }
-
 
   return (
     <>
@@ -123,7 +253,7 @@ function ProductBuy() {
         <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-6 lg:grid-cols-3">
           {/* ============ LEFT: PRODUCTS + ADDRESS + PAYMENT ============ */}
           <div className="space-y-6 lg:col-span-2">
-            {/* ---- Product Cards (mapped from cartItems) ---- */}
+            {/* ---- Product Cards ---- */}
             <div className="space-y-4">
               {cartItems.map((item) => (
                 <div
@@ -164,7 +294,7 @@ function ProductBuy() {
                       )}
                     </div>
 
-                    {/* Qty Selector — per item */}
+                    {/* Qty Selector */}
                     <div className="mt-4 inline-flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5">
                       <button
                         onClick={() => updateQuantity(item.id, -1)}
@@ -201,30 +331,88 @@ function ProductBuy() {
               <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <input
                   type="text"
+                  name="customerName"
+                  value={formData.customerName}
+                  onChange={handleInputChange}
                   placeholder="Full Name"
+                  required
                   className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#0F172A] placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#22C55E] focus:bg-white focus:ring-2 focus:ring-[#22C55E]/20"
                 />
                 <input
                   type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
                   placeholder="Phone Number"
                   className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#0F172A] placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#22C55E] focus:bg-white focus:ring-2 focus:ring-[#22C55E]/20"
                 />
                 <input
                   type="text"
-                  placeholder="Address Line"
+                  name="village"
+                  value={formData.village}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Village / Street"
                   className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#0F172A] placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#22C55E] focus:bg-white focus:ring-2 focus:ring-[#22C55E]/20 sm:col-span-2"
                 />
                 <input
                   type="text"
+                  name="nearByLocation"
+                  value={formData.nearByLocation}
+                  onChange={handleInputChange}
+                  placeholder="Near By Location (optional)"
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#0F172A] placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#22C55E] focus:bg-white focus:ring-2 focus:ring-[#22C55E]/20 sm:col-span-2"
+                />
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  required
                   placeholder="City"
                   className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#0F172A] placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#22C55E] focus:bg-white focus:ring-2 focus:ring-[#22C55E]/20"
                 />
                 <input
                   type="text"
+                  name="district"
+                  value={formData.district}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="District"
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#0F172A] placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#22C55E] focus:bg-white focus:ring-2 focus:ring-[#22C55E]/20"
+                />
+                <input
+                  type="text"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="State"
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#0F172A] placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#22C55E] focus:bg-white focus:ring-2 focus:ring-[#22C55E]/20"
+                />
+                <input
+                  type="text"
+                  name="pincode"
+                  value={formData.pincode}
+                  onChange={handleInputChange}
+                  required
                   placeholder="Pincode"
                   className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#0F172A] placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#22C55E] focus:bg-white focus:ring-2 focus:ring-[#22C55E]/20"
                 />
+                <textarea
+                  name="notes"
+                  value={formData.notes}
+                  onChange={handleInputChange}
+                  placeholder="Delivery notes (optional) — e.g. preferred delivery time"
+                  rows={2}
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#0F172A] placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#22C55E] focus:bg-white focus:ring-2 focus:ring-[#22C55E]/20 sm:col-span-2"
+                />
               </div>
+
+              {errorMsg && (
+                <p className="mt-3 text-xs font-medium text-red-500">{errorMsg}</p>
+              )}
             </div>
 
             {/* ============ PAYMENT METHODS ============ */}
@@ -237,11 +425,10 @@ function ProductBuy() {
                 {/* COD Option */}
                 <button
                   onClick={() => handlePaymentSelect("cod")}
-                  className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all duration-300 ${
-                    paymentMethod === "cod"
-                      ? "border-[#22C55E] bg-[#166534]/5 shadow-sm"
-                      : "border-slate-100 bg-slate-50 hover:border-slate-200"
-                  }`}
+                  className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all duration-300 ${paymentMethod === "cod"
+                    ? "border-[#22C55E] bg-[#166534]/5 shadow-sm"
+                    : "border-slate-100 bg-slate-50 hover:border-slate-200"
+                    }`}
                 >
                   <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-slate-100">
                     <FaMoneyBillWave className="text-[#D4AF37]" />
@@ -260,11 +447,10 @@ function ProductBuy() {
                 {/* Online Option */}
                 <button
                   onClick={() => handlePaymentSelect("online")}
-                  className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all duration-300 ${
-                    paymentMethod === "online"
-                      ? "border-[#22C55E] bg-[#166534]/5 shadow-sm"
-                      : "border-slate-100 bg-slate-50 hover:border-slate-200"
-                  }`}
+                  className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all duration-300 ${paymentMethod === "online"
+                    ? "border-[#22C55E] bg-[#166534]/5 shadow-sm"
+                    : "border-slate-100 bg-slate-50 hover:border-slate-200"
+                    }`}
                 >
                   <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-slate-100">
                     <FaQrcode className="text-[#D4AF37]" />
@@ -353,7 +539,6 @@ function ProductBuy() {
               Order Summary
             </h3>
 
-            {/* Line item breakdown — one row per product */}
             <div className="space-y-2.5 border-b border-slate-100 pb-4 text-sm">
               {cartItems.map((item) => (
                 <div key={item.id} className="flex justify-between text-slate-500">

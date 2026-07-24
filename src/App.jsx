@@ -13,11 +13,7 @@ import Terms from "./pages/legal/terms";
 import ShippingPolicy from "./pages/legal/shipping";
 import ProductHome from "./Product/productHome";
 import AdminPage from "./Admin/admin";
- import { CartProvider } from "./context/CartContext";
-
-<CartProvider>
-  <App />
-</CartProvider>
+ 
 
 function App() {
   return (
