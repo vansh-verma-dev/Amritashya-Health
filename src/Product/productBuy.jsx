@@ -85,56 +85,56 @@ function ProductBuy() {
   };
 
   const handlePlaceOrder = async () => {
-  if (cartItems.length === 0) return;
+    if (cartItems.length === 0) return;
 
-  if (!isFormValid()) {
-    setErrorMsg("Please fill all required address details before placing the order.");
-    return;
-  }
+    if (!isFormValid()) {
+      setErrorMsg("Please fill all required address details before placing the order.");
+      return;
+    }
 
-  setErrorMsg("");
+    setErrorMsg("");
 
-  const orderData = {
-    customerName: formData.customerName,
-    phone: formData.phone,
-    products: cartItems.map((item) => ({
-      productId: item.id,
-      name: item.name,
-      image: item.image,
-      quantity: item.quantity,
-      price: item.price,
-    })),
-    totalPrice: total,
-    address: {
-      village: formData.village,
-      nearByLocation: formData.nearByLocation,
-      city: formData.city,
-      district: formData.district,
-      state: formData.state,
-      pincode: formData.pincode,
-    },
-    paymentMethod: paymentMethod === "cod" ? "COD" : "Online",
-    notes: formData.notes,
+    const orderData = {
+      customerName: formData.customerName,
+      phone: formData.phone,
+      products: cartItems.map((item) => ({
+        productId: item.id,
+        name: item.name,
+        image: item.image,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+      totalPrice: total,
+      address: {
+        village: formData.village,
+        nearByLocation: formData.nearByLocation,
+        city: formData.city,
+        district: formData.district,
+        state: formData.state,
+        pincode: formData.pincode,
+      },
+      paymentMethod: paymentMethod === "cod" ? "COD" : "Online",
+      notes: formData.notes,
+    };
+
+
+    try {
+      axios.post(
+        "https://amritashya-backend.onrender.com/api/orders",
+        orderData
+      );
+
+      console.log(res.data);
+
+      setPlacedItemCount(cartItems.length);
+      setOrderPlaced(true);
+      clearCart();
+
+    } catch (error) {
+      console.error(error);
+      alert("Order Failed");
+    }
   };
-
-
-  try {
-    const res = await axios.post(
-      "http://localhost:5000/api/orders",
-      orderData
-    );
-
-    console.log(res.data);
-
-    setPlacedItemCount(cartItems.length);
-    setOrderPlaced(true);
-    clearCart();
-
-  } catch (error) {
-    console.error(error);
-    alert("Order Failed");
-  }
-};
   // ---- Auto redirect to home after order placed ----
   const REDIRECT_SECONDS = 5;
   const [secondsLeft, setSecondsLeft] = useState(REDIRECT_SECONDS);
